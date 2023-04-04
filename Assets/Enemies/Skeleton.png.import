@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyqyvj75wfla5"
-path="res://.godot/imported/Pixelcity.png-2c70d2520d4c045cc713a5f1ca6e995c.ctex"
+uid="uid://dqfaunvdqbww"
+path="res://.godot/imported/Skeleton.png-e9f96051504095ca1ecdda67c590e7ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tileset/Pixelcity.png"
-dest_files=["res://.godot/imported/Pixelcity.png-2c70d2520d4c045cc713a5f1ca6e995c.ctex"]
+source_file="res://Assets/Enemies/Skeleton.png"
+dest_files=["res://.godot/imported/Skeleton.png-e9f96051504095ca1ecdda67c590e7ed.ctex"]
 
 [params]
 
