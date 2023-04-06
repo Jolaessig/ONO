@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b0y53dsrvd22g"]
 
-[ext_resource type="Script" path="res://Scripts/lava.gd" id="1_im6uu"]
+[ext_resource type="Script" path="res://Scripts/lava.gd" id="1_g1012"]
 [ext_resource type="Texture2D" uid="uid://bctjb8xb0nvar" path="res://Assets/Enemies/Lava.png" id="1_q8raq"]
 [ext_resource type="Script" path="res://Scripts/AnimatedSprite2D.gd" id="2_fxfvl"]
 
@@ -30,7 +30,8 @@ animations = [{
 size = Vector2(16, 12)
 
 [node name="Lava" type="Area2D"]
-script = ExtResource("1_im6uu")
+collision_mask = 2
+script = ExtResource("1_g1012")
 
 [node name="LavaAnimation" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)

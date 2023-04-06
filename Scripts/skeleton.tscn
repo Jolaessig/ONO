@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b52oi4vdc7r88"]
+[gd_scene load_steps=9 format=3 uid="uid://b52oi4vdc7r88"]
 
 [ext_resource type="Texture2D" uid="uid://dqfaunvdqbww" path="res://Assets/Enemies/Skeleton.png" id="1_1ic5d"]
 [ext_resource type="Script" path="res://Scripts/skeleton.gd" id="1_qdq46"]
+[ext_resource type="PackedScene" uid="uid://c0ulr41kd6bdp" path="res://Scripts/hitbox.tscn" id="3_8d5uj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pp2ut"]
 atlas = ExtResource("1_1ic5d")
@@ -29,9 +30,14 @@ animations = [{
 radius = 7.0
 height = 20.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hg1sw"]
+radius = 7.0
+height = 20.0
+
 [node name="Skeleton" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 2
 script = ExtResource("1_qdq46")
 
 [node name="Skeleton" type="AnimatedSprite2D" parent="CharacterBody2D"]
@@ -50,3 +56,9 @@ target_position = Vector2(0, 2)
 [node name="LedgeCheckLeft" type="RayCast2D" parent="CharacterBody2D"]
 position = Vector2(-8, -1)
 target_position = Vector2(0, 2)
+
+[node name="Hitbox" parent="CharacterBody2D" instance=ExtResource("3_8d5uj")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hitbox"]
+position = Vector2(1, -10)
+shape = SubResource("CapsuleShape2D_hg1sw")
