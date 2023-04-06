@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cww8lj4ividht"]
+[gd_scene load_steps=10 format=3 uid="uid://cww8lj4ividht"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_lnkor"]
 [ext_resource type="Texture2D" uid="uid://cuwq5vlkg16ee" path="res://Assets/Player/Player_Walking.png" id="4_7mhxb"]
+[ext_resource type="AudioStream" uid="uid://b3800s4ixxb4j" path="res://Assets/Sounds/Jump.wav" id="4_gmeah"]
 [ext_resource type="Texture2D" uid="uid://bbuphu3lwot5s" path="res://Assets/Player/Player_Jump.png" id="4_w8aey"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qwfk4"]
@@ -71,3 +72,6 @@ shape = SubResource("RectangleShape2D_6i3uh")
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 position = Vector2(0, -15)
 remote_path = NodePath("../../Camera2D")
+
+[node name="Jump" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("4_gmeah")

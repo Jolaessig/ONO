@@ -14,6 +14,7 @@ var is_jumping = false
 var is_on_ground = false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var jumpSound = $Jump
 
 func _physics_process(delta: float) -> void:
 	if not is_on_ground:
@@ -45,6 +46,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_ground:
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
+		jumpSound.play()
 
 	move_and_slide()
 
