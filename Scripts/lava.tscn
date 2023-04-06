@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0y53dsrvd22g"]
+
+[ext_resource type="Script" path="res://Scripts/lava.gd" id="1_im6uu"]
+[ext_resource type="Texture2D" uid="uid://bctjb8xb0nvar" path="res://Assets/Enemies/Lava.png" id="1_q8raq"]
+[ext_resource type="Script" path="res://Scripts/AnimatedSprite2D.gd" id="2_fxfvl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxh2a"]
+atlas = ExtResource("1_q8raq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cf143"]
+atlas = ExtResource("1_q8raq")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kiy34"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxh2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cf143")
+}],
+"loop": true,
+"name": &"Lava",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcr23"]
+size = Vector2(16, 12)
+
+[node name="Lava" type="Area2D"]
+script = ExtResource("1_im6uu")
+
+[node name="LavaAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_kiy34")
+animation = &"Lava"
+script = ExtResource("2_fxfvl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_kcr23")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

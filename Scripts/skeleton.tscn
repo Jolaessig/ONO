@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://b52oi4vdc7r88"]
+
+[ext_resource type="Texture2D" uid="uid://dqfaunvdqbww" path="res://Assets/Enemies/Skeleton.png" id="1_1ic5d"]
+[ext_resource type="Script" path="res://Scripts/skeleton.gd" id="1_qdq46"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp2ut"]
+atlas = ExtResource("1_1ic5d")
+region = Rect2(0, 0, 23, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dqfr"]
+atlas = ExtResource("1_1ic5d")
+region = Rect2(23, 0, 23, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ui8kl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp2ut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dqfr")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iw6um"]
+radius = 7.0
+height = 20.0
+
+[node name="Skeleton" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_qdq46")
+
+[node name="Skeleton" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(0, -9)
+sprite_frames = SubResource("SpriteFrames_ui8kl")
+animation = &"Walking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(1, -10)
+shape = SubResource("CapsuleShape2D_iw6um")
+
+[node name="LedgeCheckRight" type="RayCast2D" parent="CharacterBody2D"]
+position = Vector2(8, -1)
+target_position = Vector2(0, 2)
+
+[node name="LedgeCheckLeft" type="RayCast2D" parent="CharacterBody2D"]
+position = Vector2(-8, -1)
+target_position = Vector2(0, 2)

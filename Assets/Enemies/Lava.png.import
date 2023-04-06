@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwp1hochnejtq"
-path="res://.godot/imported/Player_Walking2.png-e24f71f689b705f501e7a177db42fc95.ctex"
+uid="uid://bctjb8xb0nvar"
+path="res://.godot/imported/Lava.png-18c618dcac1b4842de3cfecd0db25918.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/Player_Walking2.png"
-dest_files=["res://.godot/imported/Player_Walking2.png-e24f71f689b705f501e7a177db42fc95.ctex"]
+source_file="res://Assets/Enemies/Lava.png"
+dest_files=["res://.godot/imported/Lava.png-18c618dcac1b4842de3cfecd0db25918.ctex"]
 
 [params]
 
