@@ -1,0 +1,104 @@
+[gd_scene load_steps=12 format=3 uid="uid://c513vlsppevrs"]
+
+[ext_resource type="Script" path="res://Scripts/Bat.gd" id="1_5c66i"]
+[ext_resource type="Texture2D" uid="uid://c53k7s0vjjj2t" path="res://Assets/Enemies/Bat.png" id="2_yadq2"]
+[ext_resource type="PackedScene" uid="uid://c0ulr41kd6bdp" path="res://Scripts/hitbox.tscn" id="3_cljdh"]
+
+[sub_resource type="Curve2D" id="Curve2D_aji58"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 5, 12, 0, 0, 0, 0, -59, -28, 0, 0, 0, 0, -131, 12, 0, 0, 0, 0, -59, -28, 0, 0, 0, 0, 5, 12)
+}
+point_count = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jh5h"]
+atlas = ExtResource("2_yadq2")
+region = Rect2(0, 0, 23, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yu7fn"]
+atlas = ExtResource("2_yadq2")
+region = Rect2(23, 0, 23, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nnsog"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jh5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yu7fn")
+}],
+"loop": true,
+"name": &"Bat",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipobh"]
+size = Vector2(20, 11)
+
+[sub_resource type="Animation" id="Animation_p53un"]
+resource_name = "BatAnimation"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.4821, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1xwci"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.4821]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_67s1i"]
+_data = {
+"BatAnimation": SubResource("Animation_p53un"),
+"RESET": SubResource("Animation_1xwci")
+}
+
+[node name="Bat" type="Path2D"]
+curve = SubResource("Curve2D_aji58")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-125.999, 9.22182)
+progress = 152.186
+rotates = false
+
+[node name="Bat" type="Node2D" parent="PathFollow2D"]
+position = Vector2(0, -0.255129)
+script = ExtResource("1_5c66i")
+
+[node name="BatAnimation" type="AnimatedSprite2D" parent="PathFollow2D/Bat"]
+sprite_frames = SubResource("SpriteFrames_nnsog")
+animation = &"Bat"
+
+[node name="Hitbox" parent="PathFollow2D/Bat" instance=ExtResource("3_cljdh")]
+position = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Bat/Hitbox"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_ipobh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PathFollow2D/Bat"]
+root_node = NodePath("../../..")
+autoplay = "BatAnimation"
+libraries = {
+"": SubResource("AnimationLibrary_67s1i")
+}

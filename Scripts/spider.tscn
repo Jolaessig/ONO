@@ -74,8 +74,8 @@ _data = {
 curve = SubResource("Curve2D_e1pak")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(0, 25.2551)
-progress = 25.2716
+position = Vector2(0, 57.6348)
+progress = 57.6224
 rotates = false
 
 [node name="Spider" type="Node2D" parent="PathFollow2D"]
