@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://vf6ve6ha27wu"]
+
+[ext_resource type="Script" path="res://Coin.gd" id="1_2qar2"]
+[ext_resource type="Texture2D" uid="uid://dubjlwriw4mab" path="res://Assets/Enemies/Coins.png" id="2_8aaul"]
+[ext_resource type="AudioStream" uid="uid://bsc1di003y5tk" path="res://Assets/Sounds/Coin.wav" id="3_8xb76"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lurj6"]
+atlas = ExtResource("2_8aaul")
+region = Rect2(0, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d653u"]
+atlas = ExtResource("2_8aaul")
+region = Rect2(23, 0, 23, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_awscc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lurj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d653u")
+}],
+"loop": true,
+"name": &"Coins",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fa8k7"]
+radius = 3.0
+height = 10.0
+
+[node name="Coin" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_2qar2")
+
+[node name="CoinAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_awscc")
+animation = &"Coins"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_fa8k7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8xb76")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

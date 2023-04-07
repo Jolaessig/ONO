@@ -13,6 +13,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_jumping = false
 var is_on_ground = false
 
+var coins = 0
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jumpSound = $Jump
 
@@ -51,6 +53,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	is_on_ground = is_on_floor()
-	
 
+	
+func add_coin():
+	coins = coins + 1
 
