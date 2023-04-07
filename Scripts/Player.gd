@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 const SPEED = 120.0
-const JUMP_VELOCITY = -300.0
+const JUMP_VELOCITY = -320.0
 const FRICTION_FORCE = 100.0
 
 const ANIM_IDLE = "idle"
