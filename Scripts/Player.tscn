@@ -54,7 +54,10 @@ size = Vector2(17, 21)
 position = Vector2(-1, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1, -25)
+position = Vector2(1, -26)
+limit_left = -14
+limit_top = -48
+limit_bottom = -48
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(1, -10)
@@ -70,7 +73,7 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_6i3uh")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-position = Vector2(0, -15)
+position = Vector2(0, -16)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Jump" type="AudioStreamPlayer" parent="Player"]
