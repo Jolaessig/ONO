@@ -10,22 +10,22 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_opy7w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqms8"]
 atlas = ExtResource("1_qpuoj")
-region = Rect2(0, 0, 23, 198)
+region = Rect2(0, 0, 27, 198)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mwiip"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_70t2n"]
 atlas = ExtResource("1_qpuoj")
-region = Rect2(23, 0, 23, 198)
+region = Rect2(27, 0, 27, 198)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kfn7y"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_opy7w")
+"texture": SubResource("AtlasTexture_sqms8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mwiip")
+"texture": SubResource("AtlasTexture_70t2n")
 }],
 "loop": true,
 "name": &"Spider",
@@ -82,7 +82,7 @@ rotates = false
 script = ExtResource("1_mhfyq")
 
 [node name="SpiderAnimation" type="AnimatedSprite2D" parent="PathFollow2D/Spider"]
-position = Vector2(-1, -87.6274)
+position = Vector2(0, -87.6274)
 sprite_frames = SubResource("SpriteFrames_kfn7y")
 animation = &"Spider"
 

@@ -26,9 +26,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iw6um"]
-radius = 7.0
-height = 20.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dcloa"]
+size = Vector2(18, 20)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hg1sw"]
 radius = 7.0
@@ -46,8 +45,8 @@ sprite_frames = SubResource("SpriteFrames_ui8kl")
 animation = &"Walking"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(1, -10)
-shape = SubResource("CapsuleShape2D_iw6um")
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_dcloa")
 
 [node name="LedgeCheckRight" type="RayCast2D" parent="CharacterBody2D"]
 position = Vector2(8, -1)

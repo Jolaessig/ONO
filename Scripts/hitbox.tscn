@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0ulr41kd6bdp"]
+[gd_scene load_steps=3 format=3 uid="uid://c0ulr41kd6bdp"]
 
 [ext_resource type="Script" path="res://Hitbox.gd" id="1_u44j8"]
+[ext_resource type="AudioStream" uid="uid://18i8lyhwpmuj" path="res://Assets/Sounds/Hurt.wav" id="2_eantr"]
 
 [node name="Hitbox" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_u44j8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_eantr")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

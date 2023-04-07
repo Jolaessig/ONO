@@ -19,6 +19,8 @@ var coins = 0
 @onready var jumpSound = $Jump
 
 func _physics_process(delta: float) -> void:
+	
+	
 	if not is_on_ground:
 		velocity.y += gravity * delta
 		animated_sprite.animation = ANIM_JUMP
@@ -33,6 +35,7 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.animation = ANIM_RUN
 			animated_sprite.flip_h = true
 			$AnimatedSprite2D.play("run")
+			
 
 	var direction = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	if direction != 0:
@@ -44,17 +47,18 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, abs(friction_force) * delta)
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED * delta)
+			
 
 	if Input.is_action_just_pressed("ui_accept") and is_on_ground:
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
 		jumpSound.play()
+		
 
 	move_and_slide()
 
 	is_on_ground = is_on_floor()
-
+	
 	
 func add_coin():
 	coins = coins + 1
-
