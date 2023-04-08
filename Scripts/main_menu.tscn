@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwx30px5n14v"]
+
+[ext_resource type="Texture2D" uid="uid://dijr1xsfepsia" path="res://Assets/Menu/TitleScreen.png" id="1_sv6pn"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="TitleScreen" type="Sprite2D" parent="."]
+position = Vector2(192, 111)
+texture = ExtResource("1_sv6pn")

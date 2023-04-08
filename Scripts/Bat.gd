@@ -14,10 +14,12 @@ func _physics_process(delta):
 	# Calculate the direction the enemy should move
 	var direction = Vector2.RIGHT.rotated(rotation)
 	velocity = direction * SPEED
-	
-	
+
 	# Set the animation flip_h property based on the direction of movement
 	if velocity.x < 0:
 		animated_sprite.flip_h = true
 	elif velocity.x > 0:
 		animated_sprite.flip_h = false
+
+
+
