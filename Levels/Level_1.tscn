@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://jr6jdakkg8td"]
+[gd_scene load_steps=19 format=3 uid="uid://jr6jdakkg8td"]
 
 [ext_resource type="Texture2D" uid="uid://dfrhpd4asshb" path="res://Assets/Tileset/Tileset_Normal.png" id="1_mfshi"]
 [ext_resource type="PackedScene" uid="uid://cww8lj4ividht" path="res://Scripts/Player.tscn" id="2_ocyhw"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://vf6ve6ha27wu" path="res://Scripts/coin.tscn" id="7_bu221"]
 [ext_resource type="Texture2D" uid="uid://nj04yhfrs5hw" path="res://Assets/UI/Heart_Empty.png" id="7_qg5ue"]
 [ext_resource type="PackedScene" uid="uid://c513vlsppevrs" path="res://Scripts/bat.tscn" id="8_nehum"]
+[ext_resource type="AudioStream" uid="uid://b72jtqwkpefiv" path="res://Assets/Sounds/Music_2.wav" id="14_04gb5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hd4ii"]
 texture = ExtResource("1_mfshi")
@@ -749,6 +750,11 @@ position = Vector2(1481, 96)
 
 [node name="Coin36" parent="coins" instance=ExtResource("7_bu221")]
 position = Vector2(1497, 96)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_04gb5")
+volume_db = 3.0
+autoplay = true
 
 [connection signal="coin_collected" from="coins/Coin" to="HUD" method="_on_coin_collected"]
 [connection signal="coin_collected" from="coins/Coin2" to="HUD" method="_on_coin_collected"]
