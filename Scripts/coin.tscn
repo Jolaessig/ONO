@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://vf6ve6ha27wu"]
+[gd_scene load_steps=11 format=3 uid="uid://vf6ve6ha27wu"]
 
-[ext_resource type="Script" path="res://Coin.gd" id="1_2qar2"]
+[ext_resource type="Script" path="res://Scripts/Coin.gd" id="1_kmexy"]
 [ext_resource type="Texture2D" uid="uid://dubjlwriw4mab" path="res://Assets/Enemies/Coins.png" id="2_8aaul"]
 [ext_resource type="AudioStream" uid="uid://bsc1di003y5tk" path="res://Assets/Sounds/Coin.wav" id="3_8xb76"]
 
@@ -26,17 +26,60 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="Animation" id="Animation_yxy8r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CoinAnimation:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8or22"]
+resource_name = "bounce"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CoinAnimation:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -8.985), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2pxkt"]
+_data = {
+"RESET": SubResource("Animation_yxy8r"),
+"bounce": SubResource("Animation_8or22")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fa8k7"]
 radius = 3.0
 height = 10.0
 
-[node name="Coin" type="Area2D"]
+[node name="coin" type="Area2D"]
 collision_mask = 2
-script = ExtResource("1_2qar2")
+script = ExtResource("1_kmexy")
 
 [node name="CoinAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_awscc")
 animation = &"Coins"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AudioStreamPlayer")
+libraries = {
+"": SubResource("AnimationLibrary_2pxkt")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_fa8k7")
@@ -45,3 +88,4 @@ shape = SubResource("CapsuleShape2D_fa8k7")
 stream = ExtResource("3_8xb76")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

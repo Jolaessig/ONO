@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cww8lj4ividht"]
+[gd_scene load_steps=11 format=3 uid="uid://cww8lj4ividht"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_lnkor"]
 [ext_resource type="Texture2D" uid="uid://cuwq5vlkg16ee" path="res://Assets/Player/Player_Walking.png" id="4_7mhxb"]
 [ext_resource type="AudioStream" uid="uid://b3800s4ixxb4j" path="res://Assets/Sounds/Jump.wav" id="4_gmeah"]
 [ext_resource type="Texture2D" uid="uid://bbuphu3lwot5s" path="res://Assets/Player/Player_Jump.png" id="4_w8aey"]
+[ext_resource type="AudioStream" uid="uid://bsc1di003y5tk" path="res://Assets/Sounds/Coin.wav" id="5_3t7x4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qwfk4"]
 atlas = ExtResource("4_7mhxb")
@@ -83,5 +84,8 @@ stream = ExtResource("4_gmeah")
 [node name="timeout" type="Timer" parent="Player"]
 wait_time = 0.5
 autostart = true
+
+[node name="Coin" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("5_3t7x4")
 
 [connection signal="timeout" from="Player/timeout" to="Player" method="_on_blinking_timer_timeout"]
