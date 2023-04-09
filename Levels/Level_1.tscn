@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://jr6jdakkg8td"]
+[gd_scene load_steps=18 format=3 uid="uid://jr6jdakkg8td"]
 
 [ext_resource type="Texture2D" uid="uid://dfrhpd4asshb" path="res://Assets/Tileset/Tileset_Normal.png" id="1_mfshi"]
 [ext_resource type="PackedScene" uid="uid://cww8lj4ividht" path="res://Scripts/Player.tscn" id="2_ocyhw"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://ddlkteqtuppiv" path="res://Scripts/spider.tscn" id="5_5hx0x"]
 [ext_resource type="FontFile" uid="uid://cuifdqwaqu5ae" path="res://Assets/Fonts/Pixel_Font.ttf" id="5_qn544"]
 [ext_resource type="PackedScene" uid="uid://blsyuu3e5lb7i" path="res://Scripts/health_potion.tscn" id="6_wj1x2"]
+[ext_resource type="Texture2D" uid="uid://0w5jftwd2se6" path="res://Assets/UI/Heart_Full.png" id="6_xje3u"]
 [ext_resource type="PackedScene" uid="uid://vf6ve6ha27wu" path="res://Scripts/coin.tscn" id="7_bu221"]
+[ext_resource type="Texture2D" uid="uid://nj04yhfrs5hw" path="res://Assets/UI/Heart_Empty.png" id="7_qg5ue"]
 [ext_resource type="PackedScene" uid="uid://c513vlsppevrs" path="res://Scripts/bat.tscn" id="8_nehum"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hd4ii"]
@@ -485,6 +487,20 @@ theme_override_fonts/font = ExtResource("5_qn544")
 theme_override_font_sizes/font_size = 8
 text = "##"
 
+[node name="HeartsFull" type="TextureRect" parent="HUD"]
+offset_top = 1.0
+offset_right = 48.0
+offset_bottom = 17.0
+texture = ExtResource("6_xje3u")
+stretch_mode = 1
+
+[node name="HeartsEmpty" type="TextureRect" parent="HUD"]
+offset_top = 1.0
+offset_right = 48.0
+offset_bottom = 17.0
+texture = ExtResource("7_qg5ue")
+stretch_mode = 1
+
 [node name="Lava" parent="." instance=ExtResource("3_3815u")]
 position = Vector2(121, 176)
 
@@ -720,19 +736,19 @@ position = Vector2(1481, 117)
 position = Vector2(1497, 117)
 
 [node name="Coin32" parent="coins" instance=ExtResource("7_bu221")]
-position = Vector2(1433, 101)
+position = Vector2(1433, 96)
 
 [node name="Coin33" parent="coins" instance=ExtResource("7_bu221")]
-position = Vector2(1449, 101)
+position = Vector2(1449, 96)
 
 [node name="Coin34" parent="coins" instance=ExtResource("7_bu221")]
-position = Vector2(1465, 101)
+position = Vector2(1465, 96)
 
 [node name="Coin35" parent="coins" instance=ExtResource("7_bu221")]
-position = Vector2(1481, 101)
+position = Vector2(1481, 96)
 
 [node name="Coin36" parent="coins" instance=ExtResource("7_bu221")]
-position = Vector2(1497, 101)
+position = Vector2(1497, 96)
 
 [connection signal="coin_collected" from="coins/Coin" to="HUD" method="_on_coin_collected"]
 [connection signal="coin_collected" from="coins/Coin2" to="HUD" method="_on_coin_collected"]

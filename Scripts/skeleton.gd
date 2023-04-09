@@ -8,6 +8,8 @@ var direction = Vector2.RIGHT
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+@onready var Global = get_node("res://Global.gd")
+
 func _ready():
 	# Get the AnimatedSprite2D node
 	animated_sprite = get_node("Skeleton")
@@ -24,3 +26,15 @@ func _physics_process(delta):
 		
 	velocity = direction * 25
 	move_and_slide()
+	
+	#NOT WORKING CODE:
+	
+func _on_body_entered(body):
+	var amount = 1 # or whatever amount of damage you want to do
+	Global.lives -= amount
+	if Global.lives <= 0:
+		print("Condition is true") # handle player/enemy death
+	else:
+		# handle player/enemy damage without death
+		emit_signal("hit")
+

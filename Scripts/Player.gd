@@ -17,6 +17,7 @@ var coins = 0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jumpSound = $Jump
+@onready var Global = get_node("res://Global.gd")
 
 func _physics_process(delta: float) -> void:
 	
@@ -62,3 +63,14 @@ func _physics_process(delta: float) -> void:
 	
 func add_coin():
 	coins = coins + 1
+	
+	#NOT WORKING CODE
+	
+func take_damage(amount):
+	Global.lives -= amount
+	if Global.lives <= 0:
+		print("Condition is true")# handle player/enemy death
+	else:
+		# handle player/enemy damage without death
+		emit_signal("hit")
+	
