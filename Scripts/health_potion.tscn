@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://blsyuu3e5lb7i"]
+[gd_scene load_steps=12 format=3 uid="uid://blsyuu3e5lb7i"]
 
 [ext_resource type="Script" path="res://Scripts/HealthPotion.gd" id="1_3tq5t"]
 [ext_resource type="Texture2D" uid="uid://hx6bu6mk22oa" path="res://Assets/Potions/Health_Potion.png" id="2_7t1kr"]
@@ -39,6 +39,43 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="Animation" id="Animation_hcedb"]
+resource_name = "bounce"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HealthPotionAnimation:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.192495, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -13), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vdxyi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HealthPotionAnimation:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7wfhx"]
+_data = {
+"RESET": SubResource("Animation_vdxyi"),
+"bounce": SubResource("Animation_hcedb")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iiakd"]
 radius = 5.0
 height = 12.0
@@ -51,7 +88,13 @@ script = ExtResource("1_3tq5t")
 sprite_frames = SubResource("SpriteFrames_7fak2")
 animation = &"HealthPotion"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7wfhx")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_iiakd")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

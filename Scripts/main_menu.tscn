@@ -2,7 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dijr1xsfepsia" path="res://Assets/Menu/TitleScreen.png" id="1_sv6pn"]
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="TitleScreen" type="Sprite2D" parent="."]
 position = Vector2(192, 111)

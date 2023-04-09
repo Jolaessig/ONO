@@ -9,5 +9,9 @@ func _ready():
 	animated_sprite.play("HealthPotion")
 
 func _on_body_entered(body):
-		queue_free()
+	# Free the coin node
+	$AnimationPlayer.play("bounce")
+	
+func _on_animation_player_animation_finished(anim_name):
+	queue_free()
 
