@@ -74,22 +74,21 @@ _data = {
 curve = SubResource("Curve2D_e1pak")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(0, 57.6348)
-progress = 57.6224
 rotates = false
 
 [node name="Spider" type="Node2D" parent="PathFollow2D"]
 script = ExtResource("1_mhfyq")
 
 [node name="SpiderAnimation" type="AnimatedSprite2D" parent="PathFollow2D/Spider"]
-position = Vector2(0, -87.6274)
+position = Vector2(0.5, -87.6274)
 sprite_frames = SubResource("SpriteFrames_kfn7y")
 animation = &"Spider"
 
 [node name="Hitbox" parent="PathFollow2D/Spider" instance=ExtResource("2_p80w0")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PathFollow2D/Spider/Hitbox"]
-polygon = PackedVector2Array(-2, 8.74485, -7, 5.74485, -7, -7.25515, -1, -10.2551, -1, -105.255, 1, -105.255, 1, -10.2551, 7, -7.25515, 7, 5.74485, 2, 8.74485)
+position = Vector2(0, 0.365231)
+polygon = PackedVector2Array(-2, 8, -7, 6, -7, -7, -1, -10, -1, -106, 2, -106, 2, -10, 8, -7, 8, 6, 3, 8)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "MoveAlongPath"

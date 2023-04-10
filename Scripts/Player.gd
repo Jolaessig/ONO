@@ -84,8 +84,6 @@ func add_coin():
 	coins = coins + 1
 	
 func ouch(_enemyposx: float):
-	if Global:
-		Global.lose_life()
 	set_modulate(Color(1,0.3,0.3,1))
 	velocity.y = JUMP_VELOCITY * 0.9
 	
