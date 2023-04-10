@@ -452,6 +452,8 @@ layer_2/tile_data = PackedInt32Array(524294, 131072, 0, 524293, 65536, 0, 524292
 [node name="Player" parent="." instance=ExtResource("2_ocyhw")]
 position = Vector2(47, 128)
 
+[node name="Timer" type="Timer" parent="Player"]
+
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_m13wo")
 

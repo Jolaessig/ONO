@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0y53dsrvd22g"]
+[gd_scene load_steps=9 format=3 uid="uid://b0y53dsrvd22g"]
 
 [ext_resource type="Script" path="res://Scripts/lava.gd" id="1_g1012"]
 [ext_resource type="Texture2D" uid="uid://bctjb8xb0nvar" path="res://Assets/Enemies/Lava.png" id="1_q8raq"]
 [ext_resource type="Script" path="res://Scripts/AnimatedSprite2D.gd" id="2_fxfvl"]
+[ext_resource type="AudioStream" uid="uid://18i8lyhwpmuj" path="res://Assets/Sounds/Hurt.wav" id="4_53c57"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kxh2a"]
 atlas = ExtResource("1_q8raq")
@@ -43,4 +44,12 @@ script = ExtResource("2_fxfvl")
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_kcr23")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_53c57")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

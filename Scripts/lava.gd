@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready():
 	# Get the AnimatedSprite2D node
@@ -9,5 +10,10 @@ func _ready():
 
 func _on_body_entered(body):
 	if body is Player:
-		get_tree().reload_current_scene()
+		body.ouch(position.x)
+		audio_player.play()
 		
+	$Timer.start()
+		
+func _on_timer_timeout():
+	get_tree().reload_current_scene()

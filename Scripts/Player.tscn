@@ -81,11 +81,11 @@ remote_path = NodePath("../../Camera2D")
 [node name="Jump" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("4_gmeah")
 
-[node name="timeout" type="Timer" parent="Player"]
-wait_time = 0.5
-autostart = true
-
 [node name="Coin" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("5_3t7x4")
 
-[connection signal="timeout" from="Player/timeout" to="Player" method="_on_blinking_timer_timeout"]
+[node name="Timer" type="Timer" parent="Player"]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Player/Timer" to="Player" method="_on_timer_timeout"]
