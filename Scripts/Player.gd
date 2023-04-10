@@ -3,6 +3,7 @@ class_name Player
 
 const SPEED = 120.0
 const JUMP_VELOCITY = -320.0
+const RUNNING_JUMP_VELOCITY = -360.0
 const FRICTION_FORCE = 100.0
 
 const ANIM_IDLE = "idle"
@@ -22,7 +23,13 @@ var coins = 0
 
 func _physics_process(delta: float) -> void:
 	
+	var speed = SPEED
+	var jump_velocity = JUMP_VELOCITY
 	
+	if Input.is_action_pressed("ui_x") and is_on_ground:
+		speed *= 1.5
+		jump_velocity = RUNNING_JUMP_VELOCITY
+		
 	if not is_on_ground:
 		velocity.y += gravity * delta
 		animated_sprite.animation = ANIM_JUMP
@@ -40,17 +47,17 @@ func _physics_process(delta: float) -> void:
 			
 	var direction = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	if direction != 0:
-		velocity.x = direction * SPEED
+		velocity.x = direction * speed
 		animated_sprite.flip_h = direction < 0
 	else:
 		if is_on_ground:
 			var friction_force = -velocity.x * FRICTION_FORCE
 			velocity.x = move_toward(velocity.x, 0, abs(friction_force) * delta)
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED * delta)
+			velocity.x = move_toward(velocity.x, 0, speed * delta)
 			
 	if Input.is_action_just_pressed("ui_accept") and is_on_ground:
-		velocity.y = JUMP_VELOCITY
+		velocity.y = jump_velocity
 		is_jumping = true
 		jumpSound.play()
 		
@@ -73,6 +80,3 @@ func ouch(_enemyposx: float):
 	
 func _on_timer_timeout():
 	set_modulate(Color(1,1,1,1))
-	
-
-
