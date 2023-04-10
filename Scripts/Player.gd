@@ -65,14 +65,9 @@ func add_coin():
 	
 func ouch(enemyposx: float):
 	set_modulate(Color(1,0.3,0.3,1))
-	velocity.y = JUMP_VELOCITY * 0.7
-	
-	
+	velocity.y = JUMP_VELOCITY * 1
 	
 	$Timer.start()
-	
-	Input.action_release("ui_left")
-	Input.action_release("ui_right")
 	
 func _on_timer_timeout():
 	set_modulate(Color(1,1,1,1))
