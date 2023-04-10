@@ -756,7 +756,6 @@ position = Vector2(1497, 96)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_04gb5")
 volume_db = 3.0
-autoplay = true
 
 [connection signal="coin_collected" from="coins/Coin" to="HUD" method="_on_coin_collected"]
 [connection signal="coin_collected" from="coins/Coin2" to="HUD" method="_on_coin_collected"]
