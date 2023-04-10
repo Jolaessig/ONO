@@ -3,24 +3,24 @@
 [ext_resource type="Script" path="res://Scripts/lava.gd" id="1_g1012"]
 [ext_resource type="Texture2D" uid="uid://bctjb8xb0nvar" path="res://Assets/Enemies/Lava.png" id="1_q8raq"]
 [ext_resource type="Script" path="res://Scripts/AnimatedSprite2D.gd" id="2_fxfvl"]
-[ext_resource type="AudioStream" uid="uid://18i8lyhwpmuj" path="res://Assets/Sounds/Hurt.wav" id="4_53c57"]
+[ext_resource type="AudioStream" uid="uid://y3gg5dwbj1tl" path="res://Assets/Sounds/Death.wav" id="4_hbeve"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kxh2a"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uxrg"]
 atlas = ExtResource("1_q8raq")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(0, 0, 64, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cf143"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebemq"]
 atlas = ExtResource("1_q8raq")
-region = Rect2(16, 0, 16, 16)
+region = Rect2(64, 0, 64, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kiy34"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kxh2a")
+"texture": SubResource("AtlasTexture_3uxrg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cf143")
+"texture": SubResource("AtlasTexture_ebemq")
 }],
 "loop": true,
 "name": &"Lava",
@@ -28,27 +28,27 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kcr23"]
-size = Vector2(16, 12)
+size = Vector2(64, 12)
 
 [node name="Lava" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_g1012")
 
 [node name="LavaAnimation" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(8, -8)
 sprite_frames = SubResource("SpriteFrames_kiy34")
 animation = &"Lava"
 script = ExtResource("2_fxfvl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(8, -6)
 shape = SubResource("RectangleShape2D_kcr23")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_53c57")
+stream = ExtResource("4_hbeve")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.5
 one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -10,7 +10,6 @@ func _ready():
 func _on_coin_collected():
 	coins += 1
 	$Coins.text = str(coins)
-	load_hearts()
 
 func load_hearts():
 	$HeartsFull.size.x = Global.lives * 16

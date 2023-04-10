@@ -504,44 +504,52 @@ offset_bottom = 17.0
 texture = ExtResource("7_qg5ue")
 stretch_mode = 1
 
-[node name="Lava" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(121, 176)
+[node name="Node" type="Node" parent="."]
 
-[node name="Lava2" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(137, 176)
+[node name="Lava" parent="Node" instance=ExtResource("3_3815u")]
+position = Vector2(120, 176)
 
-[node name="Lava3" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(153, 176)
+[node name="Lava2" parent="Node" instance=ExtResource("3_3815u")]
+position = Vector2(184, 176)
 
-[node name="Lava4" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(201, 176)
+[node name="Lava3" parent="Node" instance=ExtResource("3_3815u")]
+position = Vector2(264, 176)
 
-[node name="Lava5" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(217, 176)
+[node name="Lava4" parent="Node" instance=ExtResource("3_3815u")]
+position = Vector2(392, 176)
 
-[node name="Lava6" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(249, 176)
+[node name="Lava5" parent="Node" instance=ExtResource("3_3815u")]
+position = Vector2(504, 176)
 
-[node name="Lava7" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(265, 176)
+[node name="Lava6" parent="Node" instance=ExtResource("3_3815u")]
+position = Vector2(632, 176)
 
-[node name="Lava8" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(281, 176)
+[node name="Lava7" parent="Node" instance=ExtResource("3_3815u")]
+position = Vector2(904, 176)
+
+[node name="Lava8" parent="Node" instance=ExtResource("3_3815u")]
+position = Vector2(1032, 176)
+
+[node name="Lava9" parent="Node" instance=ExtResource("3_3815u")]
+position = Vector2(1097, 176)
+
+[node name="Lava10" parent="Node" instance=ExtResource("3_3815u")]
+position = Vector2(1160, 176)
+
+[node name="Lava11" parent="Node" instance=ExtResource("3_3815u")]
+position = Vector2(1208, 176)
+
+[node name="Lava12" parent="Node" instance=ExtResource("3_3815u")]
+position = Vector2(1256, 176)
+
+[node name="Lava13" parent="Node" instance=ExtResource("3_3815u")]
+position = Vector2(1304, 176)
+
+[node name="Lava14" parent="Node" instance=ExtResource("3_3815u")]
+position = Vector2(1368, 176)
 
 [node name="Skeleton2" parent="." instance=ExtResource("4_lea5f")]
 position = Vector2(299, 128)
-
-[node name="Lava9" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(377, 176)
-
-[node name="Lava10" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(393, 176)
-
-[node name="Lava11" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(409, 176)
-
-[node name="Lava12" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(425, 176)
 
 [node name="Spider2" parent="." instance=ExtResource("5_5hx0x")]
 position = Vector2(233, 116)
@@ -550,20 +558,8 @@ curve = SubResource("Curve2D_r6h8m")
 [node name="HealthPotion" parent="." instance=ExtResource("6_wj1x2")]
 position = Vector2(809, 34)
 
-[node name="Lava13" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(521, 176)
-
-[node name="Lava14" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(537, 176)
-
 [node name="Bat" parent="." instance=ExtResource("8_nehum")]
 position = Vector2(836, 110)
-
-[node name="Lava15" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(649, 176)
-
-[node name="Lava16" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(665, 176)
 
 [node name="Skeleton" parent="." instance=ExtResource("4_lea5f")]
 position = Vector2(585, 128)
@@ -576,66 +572,6 @@ position = Vector2(1297, 48)
 
 [node name="Spider" parent="." instance=ExtResource("5_5hx0x")]
 position = Vector2(1089, 45)
-
-[node name="Lava17" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(889, 176)
-
-[node name="Lava18" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(905, 176)
-
-[node name="Lava19" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(921, 176)
-
-[node name="Lava20" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(937, 176)
-
-[node name="Lava21" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1049, 176)
-
-[node name="Lava22" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1065, 176)
-
-[node name="Lava23" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1113, 176)
-
-[node name="Lava24" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1129, 176)
-
-[node name="Lava25" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1161, 176)
-
-[node name="Lava26" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1177, 176)
-
-[node name="Lava27" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1209, 176)
-
-[node name="Lava28" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1225, 176)
-
-[node name="Lava29" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1257, 176)
-
-[node name="Lava30" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1273, 176)
-
-[node name="Lava31" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1305, 176)
-
-[node name="Lava32" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1321, 176)
-
-[node name="Lava33" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1353, 176)
-
-[node name="Lava34" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1369, 176)
-
-[node name="Lava35" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1385, 176)
-
-[node name="Lava36" parent="." instance=ExtResource("3_3815u")]
-position = Vector2(1401, 176)
 
 [node name="Skeleton4" parent="." instance=ExtResource("4_lea5f")]
 position = Vector2(1633, 128)

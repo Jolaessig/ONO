@@ -63,23 +63,16 @@ func _physics_process(delta: float) -> void:
 func add_coin():
 	coins = coins + 1
 	
-func ouch(enemyposx: float):
+func ouch(_enemyposx: float):
+	if Global:
+		Global.lose_life()
 	set_modulate(Color(1,0.3,0.3,1))
-	velocity.y = JUMP_VELOCITY * 1
+	velocity.y = JUMP_VELOCITY * 0.9
 	
 	$Timer.start()
 	
 func _on_timer_timeout():
 	set_modulate(Color(1,1,1,1))
-	#NOT WORKING CODE
-	
-func take_damage(amount):
-	Global.lives -= amount
-	if Global.lives <= 0:
-		print("Condition is true")# handle player/enemy death
-	else:
-		# handle player/enemy damage without death
-		emit_signal("hit")
 	
 
 
