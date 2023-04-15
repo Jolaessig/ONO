@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 			running_time = 0.0
 			can_run_jump = false
 			
-	var direction = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	var direction = Input.get_action_strength("right") - Input.get_action_strength("left")
 	if direction != 0:
 		velocity.x = direction * speed
 		animated_sprite.flip_h = direction < 0
@@ -66,7 +66,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed * delta)
 			
-	if Input.is_action_just_pressed("ui_accept") and is_on_ground:
+	if Input.is_action_just_pressed("jump_button") and is_on_ground:
 		if can_run_jump:
 			velocity.y = jump_velocity * 1.5
 		else:
