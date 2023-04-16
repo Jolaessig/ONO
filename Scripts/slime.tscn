@@ -6,7 +6,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_8ekk2"]
 _data = {
-"points": PackedVector2Array(27.0827, 65.0368, -27.0827, -65.0368, 0, 6, 0, 0, 0, 0, 0, 6, 33.32, -65.5938, -33.32, 65.5938, -63.9999, 6.43893, 0, 0, 0, 0, -63.9999, 6.43893, -33.1797, 65.5938, 33.1797, -65.5938, -63.9999, 6.43893, 0, 0, 0, 0, 0, 6)
+"points": PackedVector2Array(27.0827, 65.0368, -27.0827, -65.0368, 0, 6, 0, 0, 0, 0, 0, 6, 33.32, -65.5938, -33.32, 65.5938, -64, 6, 0, 0, 0, 0, -64, 6, -33.1797, 65.5938, 33.1797, -65.5938, -64, 6, 0, 0, 0, 0, 0, 6)
 }
 point_count = 6
 
@@ -47,6 +47,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0jjmu"]
 size = Vector2(9, 8)
 
+[sub_resource type="Animation" id="Animation_hel5q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5036]
+}
+
 [sub_resource type="Animation" id="Animation_ohq5u"]
 resource_name = "bounce"
 length = 4.0
@@ -64,21 +79,6 @@ tracks/0/keys = {
 "values": [0.0, 0.5, 0.5, 0.0, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_hel5q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PathFollow2D:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.5036]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u46lu"]
 _data = {
 "RESET": SubResource("Animation_hel5q"),
@@ -88,11 +88,12 @@ _data = {
 [node name="Slime" type="Path2D"]
 position = Vector2(0, -9)
 curve = SubResource("Curve2D_8ekk2")
+metadata/_edit_horizontal_guides_ = [-2.0]
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(-32.2914, -22.8267)
+position = Vector2(-63.7959, 5.60579)
 rotation = -6.28319
-progress = 45.2625
+progress = 91.3287
 rotates = false
 
 [node name="Slime" type="Node2D" parent="PathFollow2D"]

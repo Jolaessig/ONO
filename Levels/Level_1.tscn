@@ -692,7 +692,7 @@ stream = ExtResource("14_04gb5")
 volume_db = 3.0
 
 [node name="Slime" parent="." instance=ExtResource("14_sfy64")]
-position = Vector2(1016, 115.569)
+position = Vector2(1016, 116)
 scale = Vector2(1, 0.998832)
 
 [connection signal="coin_collected" from="coins/Coin" to="HUD" method="_on_coin_collected"]
