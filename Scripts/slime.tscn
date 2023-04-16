@@ -91,9 +91,8 @@ curve = SubResource("Curve2D_8ekk2")
 metadata/_edit_horizontal_guides_ = [-2.0]
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(-63.7959, 5.60579)
+position = Vector2(0.08646, 6.16815)
 rotation = -6.28319
-progress = 91.3287
 rotates = false
 
 [node name="Slime" type="Node2D" parent="PathFollow2D"]
