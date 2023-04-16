@@ -1,0 +1,117 @@
+[gd_scene load_steps=13 format=3 uid="uid://bs6et5mjrgcg2"]
+
+[ext_resource type="Script" path="res://Slime.gd" id="1_a3htm"]
+[ext_resource type="Texture2D" uid="uid://jrskrdhhtw74" path="res://Assets/Enemies/Slime.png" id="2_kixc6"]
+[ext_resource type="PackedScene" uid="uid://c0ulr41kd6bdp" path="res://Scripts/hitbox.tscn" id="3_0lwcu"]
+
+[sub_resource type="Curve2D" id="Curve2D_8ekk2"]
+_data = {
+"points": PackedVector2Array(27.0827, 65.0368, -27.0827, -65.0368, 0, 6, 0, 0, 0, 0, 0, 6, 33.32, -65.5938, -33.32, 65.5938, -63.9999, 6.43893, 0, 0, 0, 0, -63.9999, 6.43893, -33.1797, 65.5938, 33.1797, -65.5938, -63.9999, 6.43893, 0, 0, 0, 0, 0, 6)
+}
+point_count = 6
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wul6"]
+atlas = ExtResource("2_kixc6")
+region = Rect2(23, 0, 23, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur621"]
+atlas = ExtResource("2_kixc6")
+region = Rect2(0, 0, 23, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdyp7"]
+atlas = ExtResource("2_kixc6")
+region = Rect2(23, 0, 23, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mspyp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wul6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur621")
+}],
+"loop": true,
+"name": &"Slime",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdyp7")
+}],
+"loop": true,
+"name": &"Slime2",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jjmu"]
+size = Vector2(9, 8)
+
+[sub_resource type="Animation" id="Animation_ohq5u"]
+resource_name = "bounce"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.5, 0.5, 0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_hel5q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5036]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u46lu"]
+_data = {
+"RESET": SubResource("Animation_hel5q"),
+"bounce": SubResource("Animation_ohq5u")
+}
+
+[node name="Slime" type="Path2D"]
+position = Vector2(0, -9)
+curve = SubResource("Curve2D_8ekk2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-63.7962, 6.04547)
+rotation = -6.28319
+progress = 91.1768
+rotates = false
+
+[node name="Slime" type="Node2D" parent="PathFollow2D"]
+position = Vector2(-2.38419e-07, 0)
+script = ExtResource("1_a3htm")
+
+[node name="SlimeAnimation" type="AnimatedSprite2D" parent="PathFollow2D/Slime"]
+position = Vector2(1.78814e-07, -1)
+sprite_frames = SubResource("SpriteFrames_mspyp")
+animation = &"Slime"
+
+[node name="Hitbox2" parent="PathFollow2D/Slime" instance=ExtResource("3_0lwcu")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Slime/Hitbox2"]
+position = Vector2(0.499981, 3)
+shape = SubResource("RectangleShape2D_0jjmu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "bounce"
+libraries = {
+"": SubResource("AnimationLibrary_u46lu")
+}
