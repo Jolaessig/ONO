@@ -3,22 +3,22 @@
 [ext_resource type="Texture2D" uid="uid://dbt7tdpe6qgph" path="res://Assets/Player/Player_Projectile.png" id="1_sxnex"]
 [ext_resource type="Script" path="res://Scripts/Bullet.gd" id="2_hq0cr"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ahjbs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kourr"]
 atlas = ExtResource("1_sxnex")
-region = Rect2(0, 0, 23, 26)
+region = Rect2(0, 0, 9, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_68y15"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hm63u"]
 atlas = ExtResource("1_sxnex")
-region = Rect2(23, 0, 23, 26)
+region = Rect2(9, 0, 9, 12)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2nru8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ahjbs")
+"texture": SubResource("AtlasTexture_kourr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_68y15")
+"texture": SubResource("AtlasTexture_hm63u")
 }],
 "loop": true,
 "name": &"Shot",
@@ -36,7 +36,8 @@ sprite_frames = SubResource("SpriteFrames_2nru8")
 animation = &"Shot"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="BulletAnimation"]
-scale = Vector2(0.4, 0.6)
+position = Vector2(5.96046e-08, 0)
+scale = Vector2(0.3, 0.6)
 
 [node name="Area2D" type="Area2D" parent="BulletAnimation"]
 

@@ -78,7 +78,7 @@ position = Vector2(0, 57.6348)
 progress = 57.6224
 rotates = false
 
-[node name="Spider" type="Node2D" parent="PathFollow2D"]
+[node name="Spider" type="Area2D" parent="PathFollow2D"]
 script = ExtResource("1_mhfyq")
 
 [node name="SpiderAnimation" type="AnimatedSprite2D" parent="PathFollow2D/Spider"]
@@ -97,3 +97,5 @@ autoplay = "MoveAlongPath"
 libraries = {
 "": SubResource("AnimationLibrary_od851")
 }
+
+[connection signal="area_entered" from="PathFollow2D/Spider" to="PathFollow2D/Spider" method="_on_area_entered"]
