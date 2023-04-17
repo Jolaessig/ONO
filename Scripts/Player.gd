@@ -10,6 +10,7 @@ const RUNNING_TIME_REQUIRED = 0.3
 const ANIM_IDLE = "idle"
 const ANIM_RUN = "run"
 const ANIM_JUMP = "jump"
+const ANIM_SHOOT = "shoot"
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_jumping = false
@@ -23,10 +24,16 @@ var coins = 0
 @onready var jumpSound = $Jump
 @onready var Global = get_node("res://Global.gd")
 
+@onready var bullet = preload("res://Scripts/Bullet.tscn")
+
+var b: Node2D
+
 func _physics_process(delta: float) -> void:
 
 	var speed = SPEED
 	var jump_velocity = JUMP_VELOCITY
+	
+	shoot()
 	
 	if Input.is_action_pressed("ui_x") and is_on_ground and can_run_jump:
 		speed *= 1.5
@@ -82,6 +89,13 @@ func _physics_process(delta: float) -> void:
 	
 func add_coin():
 	coins = coins + 1
+	
+func shoot() -> void:
+	if Input.is_action_just_pressed("shoot"):
+		b = bullet.instantiate()
+		get_parent().add_child(b)
+		b.global_position = $Marker2D.global_position
+
 	
 func ouch(_enemyposx: float):
 	set_modulate(Color(1,0.3,0.3,1))
