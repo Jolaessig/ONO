@@ -26,7 +26,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtexi"]
-size = Vector2(8, 12)
+size = Vector2(6, 12)
 
 [node name="BulletAnimation" type="Node2D"]
 script = ExtResource("2_hq0cr")

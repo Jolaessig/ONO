@@ -6,7 +6,6 @@ extends Node2D
 var message = "Hello"
 
 func _ready():
-	# Get the AnimatedSprite2D node
 	animated_sprite = get_node("SpiderAnimation")
 	animated_sprite.play("Spider")
 
@@ -18,5 +17,5 @@ func _on_area_entered(area):
 	$Timer.start()
 
 	
-func _on_timer_timeout(_area):
-	print(message)
+func _on_timer_timeout(area):
+	area.queue_free()
