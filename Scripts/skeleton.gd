@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Skeletor
+class_name Skeleton
 
 var direction = Vector2.RIGHT
 

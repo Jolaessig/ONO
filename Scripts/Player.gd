@@ -10,7 +10,7 @@ const RUNNING_TIME_REQUIRED = 0.3
 const ANIM_IDLE = "idle"
 const ANIM_RUN = "run"
 const ANIM_JUMP = "jump"
-const ANIM_SHOOT = "shoot"
+const ANIM_SHOOT = "shooting"
 
 const FIREBALL = preload("res://Scripts/Bullet.tscn")
 
@@ -24,6 +24,7 @@ var coins = 0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jumpSound = $Jump
+@onready var bulletSound = $Bullet
 @onready var Global = get_node("res://Global.gd")
 
 @onready var bullet = preload("res://Scripts/Bullet.tscn")
@@ -89,6 +90,12 @@ func _physics_process(delta: float) -> void:
 		jumpSound.play()
 		
 		
+	if Input.is_action_pressed("shoot"):
+		$AnimatedSprite2D.play("shots")
+	elif Input.is_action_just_released("name_of_action"):
+		$AnimationPlayer.stop(false)
+		
+		
 	move_and_slide()
 	
 	is_on_ground = is_on_floor()
@@ -100,10 +107,13 @@ func add_coin():
 func shoot() -> void:
 	if Input.is_action_just_pressed("shoot"):
 		b = bullet.instantiate()
+		bulletSound.play()
+		
 		if sign($Marker2D.position.x) == 1:
 			b.set_fireball_direction(1)
 		else:
 			b.set_fireball_direction(-1)
+			
 		get_parent().add_child(b)
 		if $AnimatedSprite2D.scale.x > 0:
 			# character is facing right, so shoot to the right

@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b52oi4vdc7r88"]
+[gd_scene load_steps=12 format=3 uid="uid://b52oi4vdc7r88"]
 
 [ext_resource type="Texture2D" uid="uid://dqfaunvdqbww" path="res://Assets/Enemies/Skeleton.png" id="1_1ic5d"]
 [ext_resource type="Script" path="res://Scripts/GetHit.gd" id="1_jhmob"]
 [ext_resource type="Script" path="res://Scripts/skeleton.gd" id="1_qdq46"]
 [ext_resource type="PackedScene" uid="uid://c0ulr41kd6bdp" path="res://Scripts/hitbox.tscn" id="3_8d5uj"]
+[ext_resource type="AudioStream" uid="uid://y3gg5dwbj1tl" path="res://Assets/Sounds/Death.wav" id="5_1r8rm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87cqj"]
 size = Vector2(19, 20)
@@ -38,6 +39,7 @@ radius = 7.0
 height = 20.0
 
 [node name="Skeleton" type="Area2D"]
+collision_layer = 2
 script = ExtResource("1_jhmob")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -71,4 +73,11 @@ target_position = Vector2(0, 2)
 position = Vector2(1, -10)
 shape = SubResource("CapsuleShape2D_hg1sw")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1r8rm")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
