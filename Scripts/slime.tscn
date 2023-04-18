@@ -129,9 +129,9 @@ script = ExtResource("1_bf3ng")
 metadata/_edit_horizontal_guides_ = [-2.0]
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(-31.8644, -23.1355)
+position = Vector2(-64, 5.99998)
 rotation = -6.28319
-progress = 45.6646
+progress = 4.57764e-05
 rotates = false
 
 [node name="Slime" type="Area2D" parent="PathFollow2D"]

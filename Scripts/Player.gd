@@ -20,11 +20,13 @@ var is_on_ground = false
 var running_time = 0.0
 var can_run_jump = false
 
+var shotCount = 0
 var coins = 0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jumpSound = $Jump
 @onready var bulletSound = $Bullet
+@onready var emptySound = $Empty
 
 @onready var bullet = preload("res://Scripts/Bullet.tscn")
 
@@ -106,7 +108,7 @@ func add_coin():
 	coins = coins + 1
 	
 func shoot() -> void:
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and shotCount < 3:
 		b = bullet.instantiate()
 		bulletSound.play()
 		
@@ -122,7 +124,9 @@ func shoot() -> void:
 		elif $AnimatedSprite2D.scale.x < 0:
 			# character is facing left, so shoot to the left
 			b.global_position = $Marker2D.global_position + Vector2.LEFT * b.get_node("CollisionShape2D").shape.extents.x * 2
-
+		
+		# Increase the shot counter
+		shotCount += 1
 
 	
 func ouch(_enemyposx: float):
