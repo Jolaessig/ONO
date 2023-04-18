@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Skeletor
 
 var direction = Vector2.RIGHT
 
@@ -14,6 +15,7 @@ func _ready():
 	# Get the AnimatedSprite2D node
 	animated_sprite = get_node("Skeleton")
 	animated_sprite.play("Walking")
+	
 
 func _physics_process(delta):
 	var found_wall = is_on_wall()

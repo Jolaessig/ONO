@@ -32,6 +32,7 @@ size = Vector2(8, 12)
 script = ExtResource("2_hq0cr")
 
 [node name="BulletAnimation" type="AnimatedSprite2D" parent="."]
+z_index = 3
 sprite_frames = SubResource("SpriteFrames_2nru8")
 animation = &"Shot"
 
@@ -45,3 +46,4 @@ scale = Vector2(0.3, 0.6)
 shape = SubResource("RectangleShape2D_jtexi")
 
 [connection signal="screen_exited" from="BulletAnimation/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="BulletAnimation/Area2D" to="." method="_on_area_2d_body_entered"]
