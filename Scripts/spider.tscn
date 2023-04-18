@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://ddlkteqtuppiv"]
+[gd_scene load_steps=16 format=3 uid="uid://ddlkteqtuppiv"]
 
 [ext_resource type="Script" path="res://Scripts/GetHit.gd" id="1_740lv"]
 [ext_resource type="Script" path="res://Scripts/Spider.gd" id="1_mhfyq"]
 [ext_resource type="Texture2D" uid="uid://cktw4lalcsu7q" path="res://Assets/Enemies/Spider_23x26.png" id="1_qpuoj"]
 [ext_resource type="PackedScene" uid="uid://c0ulr41kd6bdp" path="res://Scripts/hitbox.tscn" id="2_p80w0"]
+[ext_resource type="Texture2D" uid="uid://qdlcmv3b1qjx" path="res://Assets/Enemies/Spider_Hit.png" id="4_213dg"]
 [ext_resource type="AudioStream" uid="uid://bfsx8qgxjbevf" path="res://Assets/Sounds/EnemyDeath.wav" id="5_f6bp2"]
 
 [sub_resource type="Curve2D" id="Curve2D_e1pak"]
@@ -20,6 +21,14 @@ region = Rect2(0, 0, 27, 198)
 atlas = ExtResource("1_qpuoj")
 region = Rect2(27, 0, 27, 198)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu8f2"]
+atlas = ExtResource("4_213dg")
+region = Rect2(0, 0, 27, 198)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17xm2"]
+atlas = ExtResource("4_213dg")
+region = Rect2(27, 0, 27, 198)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_kfn7y"]
 animations = [{
 "frames": [{
@@ -31,6 +40,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"Spider",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu8f2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17xm2")
+}],
+"loop": true,
+"name": &"SpiderHit",
 "speed": 5.0
 }]
 
@@ -86,8 +106,7 @@ script = ExtResource("1_mhfyq")
 [node name="SpiderAnimation" type="AnimatedSprite2D" parent="PathFollow2D/Spider"]
 position = Vector2(0.5, -87.6274)
 sprite_frames = SubResource("SpriteFrames_kfn7y")
-animation = &"Spider"
-script = ExtResource("1_740lv")
+animation = &"SpiderHit"
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="PathFollow2D/Spider"]
 position = Vector2(0, 0.365231)
@@ -99,12 +118,12 @@ polygon = PackedVector2Array(-2, 8, -7, 6, -7, -7, -1, -10, -1, -106, 2, -106, 2
 position = Vector2(0, 0.365231)
 polygon = PackedVector2Array(-2, 8, -7, 6, -7, -7, -1, -10, -1, -106, 2, -106, 2, -10, 8, -7, 8, 6, 3, 8)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PathFollow2D/Spider"]
-stream = ExtResource("5_f6bp2")
-
 [node name="Timer" type="Timer" parent="PathFollow2D/Spider"]
 wait_time = 0.1
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PathFollow2D/Spider"]
+stream = ExtResource("5_f6bp2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "MoveAlongPath"
@@ -114,3 +133,4 @@ libraries = {
 
 [connection signal="area_entered" from="PathFollow2D/Spider" to="PathFollow2D/Spider" method="_on_area_entered"]
 [connection signal="area_entered" from="PathFollow2D/Spider/Hitbox" to="." method="_on_area_entered"]
+[connection signal="timeout" from="PathFollow2D/Spider/Timer" to="." method="_on_timer_timeout"]

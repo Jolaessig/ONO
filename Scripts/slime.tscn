@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bs6et5mjrgcg2"]
+[gd_scene load_steps=16 format=3 uid="uid://bs6et5mjrgcg2"]
 
 [ext_resource type="Script" path="res://Slime.gd" id="1_a3htm"]
+[ext_resource type="Script" path="res://Scripts/GetHit.gd" id="1_bf3ng"]
 [ext_resource type="Texture2D" uid="uid://jrskrdhhtw74" path="res://Assets/Enemies/Slime.png" id="2_kixc6"]
 [ext_resource type="PackedScene" uid="uid://c0ulr41kd6bdp" path="res://Scripts/hitbox.tscn" id="3_0lwcu"]
+[ext_resource type="AudioStream" uid="uid://bfsx8qgxjbevf" path="res://Assets/Sounds/EnemyDeath.wav" id="5_k55d7"]
 
 [sub_resource type="Curve2D" id="Curve2D_8ekk2"]
 _data = {
@@ -43,6 +45,9 @@ animations = [{
 "name": &"Slime2",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_51m2v"]
+size = Vector2(12, 7.99995)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0jjmu"]
 size = Vector2(12, 8)
@@ -112,15 +117,16 @@ _data = {
 [node name="Slime" type="Path2D"]
 position = Vector2(0, -9)
 curve = SubResource("Curve2D_8ekk2")
+script = ExtResource("1_bf3ng")
 metadata/_edit_horizontal_guides_ = [-2.0]
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(0, 6)
+position = Vector2(-31.8644, -23.1355)
 rotation = -6.28319
-progress = 90.6763
+progress = 45.6646
 rotates = false
 
-[node name="Slime" type="Node2D" parent="PathFollow2D"]
+[node name="Slime" type="Area2D" parent="PathFollow2D"]
 script = ExtResource("1_a3htm")
 
 [node name="SlimeAnimation" type="AnimatedSprite2D" parent="PathFollow2D/Slime"]
@@ -128,6 +134,10 @@ position = Vector2(1, -0.999996)
 sprite_frames = SubResource("SpriteFrames_mspyp")
 animation = &"Slime"
 flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Slime"]
+position = Vector2(0.999977, 3.00002)
+shape = SubResource("RectangleShape2D_51m2v")
 
 [node name="Hitbox2" parent="PathFollow2D/Slime" instance=ExtResource("3_0lwcu")]
 
@@ -140,3 +150,12 @@ autoplay = "bounce"
 libraries = {
 "": SubResource("AnimationLibrary_u46lu")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_k55d7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="area_entered" from="PathFollow2D/Slime" to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
