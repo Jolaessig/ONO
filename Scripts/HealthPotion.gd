@@ -9,11 +9,11 @@ func _ready():
 	animated_sprite = get_node("HealthPotionAnimation")
 	animated_sprite.play("HealthPotion")
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	# Free the coin node
 	$AnimationPlayer.play("bounce")
 	audio_player.play()
 	
-func _on_animation_player_animation_finished(anim_name):
+func _on_animation_player_animation_finished(_anim_name):
 	queue_free()
 

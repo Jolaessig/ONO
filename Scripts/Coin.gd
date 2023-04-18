@@ -12,12 +12,12 @@ func _ready():
 	animated_sprite.play("Coins")
 	
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	# Free the coin node
 	$AnimationPlayer.play("bounce")
 	emit_signal("coin_collected")
 	audio_player.play()
 	shape_to_delete.queue_free()
 	
-func _on_animation_player_animation_finished(anim_name):
+func _on_animation_player_animation_finished(_anim_name):
 	queue_free()

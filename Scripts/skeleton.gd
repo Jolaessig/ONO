@@ -17,7 +17,7 @@ func _ready():
 	animated_sprite.play("Walking")
 	
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var found_wall = is_on_wall()
 	var found_ledge = not LedgeCheckRight.is_colliding() or not LedgeCheckLeft.is_colliding()
 	
@@ -31,7 +31,7 @@ func _physics_process(delta):
 	
 	#NOT WORKING CODE:
 	
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	var amount = 1 # or whatever amount of damage you want to do
 	Global.lives -= amount
 	if Global.lives <= 0:

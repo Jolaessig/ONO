@@ -561,9 +561,6 @@ position = Vector2(1304, 176)
 [node name="Lava14" parent="Lava" instance=ExtResource("3_3815u")]
 position = Vector2(1368, 176)
 
-[node name="Skeleton2" parent="." instance=ExtResource("4_lea5f")]
-position = Vector2(299, 128)
-
 [node name="Spider2" parent="." instance=ExtResource("5_5hx0x")]
 position = Vector2(233, 116)
 curve = SubResource("Curve2D_r6h8m")
@@ -576,6 +573,9 @@ position = Vector2(836, 103)
 
 [node name="Skeleton" parent="." instance=ExtResource("4_lea5f")]
 position = Vector2(585, 128)
+
+[node name="Skeleton3" parent="." instance=ExtResource("4_lea5f")]
+position = Vector2(337, 128)
 
 [node name="Bat2" parent="." instance=ExtResource("8_nehum")]
 position = Vector2(1297, 48)
