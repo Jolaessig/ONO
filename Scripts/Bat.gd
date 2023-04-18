@@ -3,7 +3,7 @@ extends Node2D
 const SPEED = 100
 var velocity = Vector2.ZERO
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $BatAnimation
 
 
 

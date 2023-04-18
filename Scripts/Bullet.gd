@@ -1,7 +1,7 @@
 extends Node2D
 class_name Bullet
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $BulletAnimation
 	
 const SPEED = 150
 var velocity = Vector2()
@@ -23,11 +23,11 @@ func _process(delta):
 	translate(velocity)
 
 
-func _on_area_2d_body_entered(area):
+func _on_area_2d_body_entered(_area):
 	queue_free()
 
 	
-func _on_area_entered(area):
+func _on_area_entered(_area):
 	queue_free()
 	
 	

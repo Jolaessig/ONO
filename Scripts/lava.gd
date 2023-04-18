@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $LavaAnimation
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready():

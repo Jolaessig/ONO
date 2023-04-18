@@ -7,5 +7,3 @@ func _on_enemy_body_entered(body):
 		body.ouch(position.x)
 		audio_player.play()
 			#get_tree().reload_current_scene()
-
-

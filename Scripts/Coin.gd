@@ -2,7 +2,7 @@ extends Area2D
 
 signal coin_collected
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $CoinAnimation
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var shape_to_delete := $CollisionShape2D
 

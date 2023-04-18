@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $HealthPotionAnimation
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 		
 		

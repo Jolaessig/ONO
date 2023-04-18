@@ -25,11 +25,14 @@ var coins = 0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jumpSound = $Jump
 @onready var bulletSound = $Bullet
-@onready var Global = get_node("res://Global.gd")
 
 @onready var bullet = preload("res://Scripts/Bullet.tscn")
 
 var b: Node2D
+
+func _ready() -> void:
+
+	Input.set_mouse_mode( Input.MOUSE_MODE_HIDDEN)
 
 func _physics_process(delta: float) -> void:
 
@@ -92,8 +95,6 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_pressed("shoot"):
 		$AnimatedSprite2D.play("shots")
-	elif Input.is_action_just_released("name_of_action"):
-		$AnimationPlayer.stop(false)
 		
 		
 	move_and_slide()
@@ -118,7 +119,7 @@ func shoot() -> void:
 		if $AnimatedSprite2D.scale.x > 0:
 			# character is facing right, so shoot to the right
 			b.global_position = $Marker2D.global_position
-		else:
+		elif $AnimatedSprite2D.scale.x < 0:
 			# character is facing left, so shoot to the left
 			b.global_position = $Marker2D.global_position + Vector2.LEFT * b.get_node("CollisionShape2D").shape.extents.x * 2
 

@@ -7,9 +7,8 @@ var direction = Vector2.RIGHT
 @onready var LedgeCheckRight: = $LedgeCheckRight
 @onready var LedgeCheckLeft: = $LedgeCheckLeft
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $Skeleton
 
-@onready var Global = get_node("res://Global.gd")
 
 func _ready():
 	# Get the AnimatedSprite2D node
