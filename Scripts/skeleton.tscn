@@ -32,11 +32,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dcloa"]
-size = Vector2(18, 20)
+size = Vector2(15, 20)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hg1sw"]
-radius = 7.0
-height = 20.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3klcc"]
+size = Vector2(15, 20)
 
 [node name="Skeleton" type="Area2D"]
 collision_layer = 2
@@ -56,7 +55,7 @@ sprite_frames = SubResource("SpriteFrames_ui8kl")
 animation = &"Walking"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, -10)
+position = Vector2(0.5, -10)
 shape = SubResource("RectangleShape2D_dcloa")
 
 [node name="LedgeCheckRight" type="RayCast2D" parent="CharacterBody2D"]
@@ -70,8 +69,8 @@ target_position = Vector2(0, 2)
 [node name="Hitbox" parent="CharacterBody2D" instance=ExtResource("3_8d5uj")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hitbox"]
-position = Vector2(1, -10)
-shape = SubResource("CapsuleShape2D_hg1sw")
+position = Vector2(0.5, -10)
+shape = SubResource("RectangleShape2D_3klcc")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
