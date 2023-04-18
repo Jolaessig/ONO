@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bs6et5mjrgcg2"]
+[gd_scene load_steps=18 format=3 uid="uid://bs6et5mjrgcg2"]
 
 [ext_resource type="Script" path="res://Slime.gd" id="1_a3htm"]
 [ext_resource type="Script" path="res://Scripts/GetHit.gd" id="1_bf3ng"]
 [ext_resource type="Texture2D" uid="uid://jrskrdhhtw74" path="res://Assets/Enemies/Slime.png" id="2_kixc6"]
 [ext_resource type="PackedScene" uid="uid://c0ulr41kd6bdp" path="res://Scripts/hitbox.tscn" id="3_0lwcu"]
+[ext_resource type="Texture2D" uid="uid://b41icq5iaklrw" path="res://Assets/Enemies/Slime_Hit.png" id="4_jjxi3"]
 [ext_resource type="AudioStream" uid="uid://bfsx8qgxjbevf" path="res://Assets/Sounds/EnemyDeath.wav" id="5_k55d7"]
 
 [sub_resource type="Curve2D" id="Curve2D_8ekk2"]
@@ -20,9 +21,13 @@ region = Rect2(26, 0, 26, 26)
 atlas = ExtResource("2_kixc6")
 region = Rect2(0, 0, 26, 26)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jdyp7"]
-atlas = ExtResource("2_kixc6")
-region = Rect2(23, 0, 23, 26)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xgic"]
+atlas = ExtResource("4_jjxi3")
+region = Rect2(0, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aabd2"]
+atlas = ExtResource("4_jjxi3")
+region = Rect2(26, 0, 26, 26)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mspyp"]
 animations = [{
@@ -39,10 +44,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jdyp7")
+"texture": SubResource("AtlasTexture_5xgic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aabd2")
 }],
 "loop": true,
-"name": &"Slime2",
+"name": &"SlimeHit",
 "speed": 5.0
 }]
 
@@ -132,7 +140,7 @@ script = ExtResource("1_a3htm")
 [node name="SlimeAnimation" type="AnimatedSprite2D" parent="PathFollow2D/Slime"]
 position = Vector2(1, -0.999996)
 sprite_frames = SubResource("SpriteFrames_mspyp")
-animation = &"Slime"
+animation = &"SlimeHit"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Slime"]
@@ -145,17 +153,18 @@ shape = SubResource("RectangleShape2D_51m2v")
 position = Vector2(0.913528, 3)
 shape = SubResource("RectangleShape2D_0jjmu")
 
+[node name="Timer" type="Timer" parent="PathFollow2D/Slime"]
+wait_time = 0.1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PathFollow2D/Slime"]
+stream = ExtResource("5_k55d7")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "bounce"
 libraries = {
 "": SubResource("AnimationLibrary_u46lu")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_k55d7")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
-
-[connection signal="area_entered" from="PathFollow2D/Slime" to="." method="_on_area_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="PathFollow2D/Slime" to="PathFollow2D/Slime" method="_on_area_entered"]
+[connection signal="area_entered" from="PathFollow2D/Slime/Hitbox2" to="." method="_on_area_entered"]
+[connection signal="timeout" from="PathFollow2D/Slime/Timer" to="." method="_on_timer_timeout"]

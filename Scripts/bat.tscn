@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://c513vlsppevrs"]
+[gd_scene load_steps=18 format=3 uid="uid://c513vlsppevrs"]
 
+[ext_resource type="Script" path="res://Scripts/GetHit.gd" id="1_2q17i"]
 [ext_resource type="Script" path="res://Scripts/Bat.gd" id="1_5c66i"]
-[ext_resource type="Script" path="res://Scripts/GetHit2.gd" id="1_s15u7"]
 [ext_resource type="Texture2D" uid="uid://c53k7s0vjjj2t" path="res://Assets/Enemies/Bat.png" id="2_yadq2"]
 [ext_resource type="PackedScene" uid="uid://c0ulr41kd6bdp" path="res://Scripts/hitbox.tscn" id="3_cljdh"]
+[ext_resource type="Texture2D" uid="uid://dhp1kninf3r7u" path="res://Assets/Enemies/Bat_Hit.png" id="4_4noxq"]
 [ext_resource type="AudioStream" uid="uid://bfsx8qgxjbevf" path="res://Assets/Sounds/EnemyDeath.wav" id="5_qeewb"]
 
 [sub_resource type="Curve2D" id="Curve2D_aji58"]
@@ -20,6 +21,14 @@ region = Rect2(0, 0, 23, 26)
 atlas = ExtResource("2_yadq2")
 region = Rect2(23, 0, 23, 26)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieq2f"]
+atlas = ExtResource("4_4noxq")
+region = Rect2(0, 0, 23, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_071wc"]
+atlas = ExtResource("4_4noxq")
+region = Rect2(23, 0, 23, 26)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_nnsog"]
 animations = [{
 "frames": [{
@@ -31,6 +40,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"Bat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieq2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_071wc")
+}],
+"loop": true,
+"name": &"BatHit",
 "speed": 5.0
 }]
 
@@ -105,7 +125,7 @@ _data = {
 
 [node name="Bat" type="Path2D"]
 curve = SubResource("Curve2D_aji58")
-script = ExtResource("1_s15u7")
+script = ExtResource("1_2q17i")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 position = Vector2(5, 12)
@@ -117,7 +137,7 @@ script = ExtResource("1_5c66i")
 
 [node name="BatAnimation" type="AnimatedSprite2D" parent="PathFollow2D/Bat"]
 sprite_frames = SubResource("SpriteFrames_nnsog")
-animation = &"Bat"
+animation = &"BatHit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Bat"]
 position = Vector2(0.5, -0.244871)
@@ -131,17 +151,18 @@ position = Vector2(-0.000717163, -1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_pcrsb")
 
+[node name="Timer" type="Timer" parent="PathFollow2D/Bat"]
+wait_time = 0.1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PathFollow2D/Bat"]
+stream = ExtResource("5_qeewb")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "BatAnimation"
 libraries = {
 "": SubResource("AnimationLibrary_67s1i")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_qeewb")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
-
-[connection signal="area_entered" from="PathFollow2D/Bat" to="." method="_on_area_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="PathFollow2D/Bat" to="PathFollow2D/Bat" method="_on_area_entered"]
+[connection signal="area_entered" from="PathFollow2D/Bat/Hitbox" to="." method="_on_area_entered"]
+[connection signal="timeout" from="PathFollow2D/Bat/Timer" to="." method="_on_timer_timeout"]
