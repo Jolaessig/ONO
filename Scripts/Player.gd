@@ -23,12 +23,14 @@ var can_run_jump = false
 var shotCount = 0
 var coins = 0
 var hitCount = 0
-var isInvincible = false
+var is_invincible = false
+
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jumpSound = $Jump
 @onready var bulletSound = $Bullet
 @onready var emptySound = $Empty
+@onready var hitSound = $Hit
 
 @onready var bullet = preload("res://Scripts/Bullet.tscn")
 
@@ -132,6 +134,11 @@ func shoot() -> void:
 
 	
 func ouch(_enemyposx: float):
+	if is_invincible:
+		return
+	
+	is_invincible = true
+	hitSound.play()
 	set_modulate(Color(1,0.3,0.3,1))
 	velocity.y = JUMP_VELOCITY * 0.9
 	
@@ -141,6 +148,8 @@ func ouch(_enemyposx: float):
 		$Timer2.start()
 	else:
 		$Timer.start()
+		
+	$InvincibilityTimer.start()
 	
 func _on_timer_timeout():
 	set_modulate(Color(1,1,1,1))
@@ -148,3 +157,8 @@ func _on_timer_timeout():
 func _on_timer_2_timeout():
 	set_modulate(Color(1,1,1,1))
 	get_tree().change_scene_to_file("res://Scripts/GameOver.tscn")
+
+
+func _on_invincibility_timer_timeout():
+	is_invincible = false
+	set_modulate(Color(1, 1, 1, 1))

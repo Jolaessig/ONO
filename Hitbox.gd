@@ -5,5 +5,4 @@ extends Area2D
 func _on_enemy_body_entered(body):
 	if body is Player:
 		body.ouch(position.x)
-		audio_player.play()
 			#get_tree().reload_current_scene()

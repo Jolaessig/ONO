@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cww8lj4ividht"]
+[gd_scene load_steps=14 format=3 uid="uid://cww8lj4ividht"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_lnkor"]
 [ext_resource type="Texture2D" uid="uid://cuwq5vlkg16ee" path="res://Assets/Player/Player_Walking.png" id="4_7mhxb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bbuphu3lwot5s" path="res://Assets/Player/Player_Jump.png" id="4_w8aey"]
 [ext_resource type="AudioStream" uid="uid://bsc1di003y5tk" path="res://Assets/Sounds/Coin.wav" id="5_3t7x4"]
 [ext_resource type="AudioStream" uid="uid://1uprfwqqusa6" path="res://Assets/Sounds/Zap.wav" id="6_y7171"]
+[ext_resource type="AudioStream" uid="uid://18i8lyhwpmuj" path="res://Assets/Sounds/Hurt.wav" id="8_bx20g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qwfk4"]
 atlas = ExtResource("4_7mhxb")
@@ -103,6 +104,9 @@ stream = ExtResource("6_y7171")
 [node name="Empty" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("5_3t7x4")
 
+[node name="Hit" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("8_bx20g")
+
 [node name="Coin" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("5_3t7x4")
 
@@ -116,5 +120,8 @@ position = Vector2(12, 3)
 [node name="Timer2" type="Timer" parent="Player"]
 wait_time = 0.5
 
+[node name="InvincibilityTimer" type="Timer" parent="Player"]
+
 [connection signal="timeout" from="Player/Timer" to="Player" method="_on_timer_timeout"]
 [connection signal="timeout" from="Player/Timer2" to="Player" method="_on_timer_2_timeout"]
+[connection signal="timeout" from="Player/InvincibilityTimer" to="Player" method="_on_invincibility_timer_timeout"]
