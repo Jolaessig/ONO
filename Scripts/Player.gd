@@ -22,6 +22,8 @@ var can_run_jump = false
 
 var shotCount = 0
 var coins = 0
+var hitCount = 0
+var isInvincible = false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jumpSound = $Jump
@@ -133,7 +135,16 @@ func ouch(_enemyposx: float):
 	set_modulate(Color(1,0.3,0.3,1))
 	velocity.y = JUMP_VELOCITY * 0.9
 	
-	$Timer.start()
+	hitCount += 1
+	
+	if hitCount >= 3:
+		$Timer2.start()
+	else:
+		$Timer.start()
 	
 func _on_timer_timeout():
 	set_modulate(Color(1,1,1,1))
+	
+func _on_timer_2_timeout():
+	set_modulate(Color(1,1,1,1))
+	get_tree().change_scene_to_file("res://Scripts/GameOver.tscn")

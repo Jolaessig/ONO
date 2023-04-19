@@ -113,4 +113,8 @@ one_shot = true
 [node name="Marker2D" type="Marker2D" parent="Player"]
 position = Vector2(12, 3)
 
+[node name="Timer2" type="Timer" parent="Player"]
+wait_time = 0.5
+
 [connection signal="timeout" from="Player/Timer" to="Player" method="_on_timer_timeout"]
+[connection signal="timeout" from="Player/Timer2" to="Player" method="_on_timer_2_timeout"]
